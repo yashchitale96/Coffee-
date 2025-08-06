@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { DivideIcon as LucideIcon } from 'lucide-react';
+import { type LucideIcon } from 'lucide-react';
 
 interface InteractiveButtonProps {
   children: React.ReactNode;
@@ -55,15 +55,15 @@ const InteractiveButton: React.FC<InteractiveButtonProps> = ({
     >
       {/* Ripple Effect */}
       <motion.div
-        className="absolute inset-0 bg-white/20 rounded-full"
+        className="absolute inset-0 bg-white/10 rounded-full"
         initial={{ scale: 0, opacity: 0 }}
-        animate={isPressed ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+        animate={isPressed ? { scale: 1, opacity: 0.3 } : { scale: 0, opacity: 0 }}
         transition={{ duration: 0.3 }}
       />
 
       {/* Shimmer Effect */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
         initial={{ x: '-100%' }}
         animate={isHovered ? { x: '100%' } : { x: '-100%' }}
         transition={{ duration: 0.8, ease: "easeInOut" }}

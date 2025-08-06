@@ -5,14 +5,14 @@ import InteractiveButton from './InteractiveButton';
 
 const Hero: React.FC = () => {
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']); // Reduced parallax movement
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   return (
-    <section className="relative h-screen overflow-hidden">
-      {/* Parallax Background */}
+    <section className="relative min-h-screen overflow-hidden">
+      {/* Parallax Background - Extended to cover all content */}
       <motion.div 
-        style={{ y }}
+        style={{ y, height: '150vh', minHeight: '120vh' }} // Much larger background to prevent white space
         className="absolute inset-0 bg-gradient-to-br from-amber-900 via-yellow-900 to-orange-900"
       >
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
       {/* Content */}
       <motion.div 
         style={{ opacity }}
-        className="relative z-10 flex items-center justify-center h-full text-center text-white px-4"
+        className="relative z-10 flex items-center justify-center min-h-screen text-center text-white px-4 py-20"
       >
         <div className="max-w-4xl mx-auto">
           <motion.div

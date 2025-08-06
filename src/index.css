@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent flash of background before loading screen */
+html, body {
+  background-color: #8B4513;
+  margin: 0;
+  padding: 0;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
