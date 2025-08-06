@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import rajasthaniCharacterImg from '../asset/rajasthani welcome.png';
+// Using the same image temporarily - will be replaced with actual female character
+import rajasthaniFemaleCharacterImg from '../asset/female_welcome.png';
 
 interface RajasthaniLoadingScreenProps {
   onComplete: () => void;
@@ -11,6 +14,8 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
   const textRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const progressFillRef = useRef<HTMLDivElement>(null);
+  const characterRef = useRef<HTMLDivElement>(null);
+  const femaleCharacterRef = useRef<HTMLDivElement>(null);
   const curtainRef = useRef<HTMLDivElement>(null);
   
   const [progress, setProgress] = useState(0);
@@ -46,15 +51,47 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
       y: 50
     });
 
+    // Character starts from left side, off-screen
+    gsap.set(characterRef.current, {
+      opacity: 0,
+      x: -120,
+      scale: 0.8
+    });
+
+    // Female character starts from right side, off-screen
+    gsap.set(femaleCharacterRef.current, {
+      opacity: 0,
+      x: 120,
+      scale: 0.8
+    });
+
     // Main animation sequence
     tl
-      // 1. Logo entrance - coffee cup design
+      // 1. Character entrance - welcoming gesture from left
+      .to(characterRef.current, {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: "back.out(1.4)"
+      })
+      
+      // 1.5. Female character entrance - welcoming gesture from right
+      .to(femaleCharacterRef.current, {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: "back.out(1.4)"
+      }, "-=0.8")
+      
+      // 2. Logo entrance - coffee cup design
       .to(logoRef.current, {
         opacity: 1,
         y: 0,
         duration: 1,
         ease: "back.out(1.7)"
-      }, "-=0.8")
+      }, "-=0.5")
       
       // 3. Text reveal with stagger
       .to(textRef.current, {
@@ -93,6 +130,45 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
       repeat: -1
     });
 
+    // Character breathing animation
+    gsap.to(characterRef.current, {
+      scale: 1.02,
+      duration: 3,
+      ease: "power1.inOut",
+      yoyo: true,
+      repeat: -1
+    });
+
+    // Character subtle floating
+    gsap.to(characterRef.current, {
+      y: -3,
+      duration: 2.5,
+      ease: "sine.inOut",
+      yoyo: true,
+      repeat: -1,
+      delay: 0.5
+    });
+
+    // Female character breathing animation
+    gsap.to(femaleCharacterRef.current, {
+      scale: 1.02,
+      duration: 3.2,
+      ease: "power1.inOut",
+      yoyo: true,
+      repeat: -1,
+      delay: 0.3
+    });
+
+    // Female character subtle floating
+    gsap.to(femaleCharacterRef.current, {
+      y: -4,
+      duration: 2.8,
+      ease: "sine.inOut",
+      yoyo: true,
+      repeat: -1,
+      delay: 0.8
+    });
+
     return () => {
       tl.kill();
       progressTl.kill();
@@ -120,6 +196,86 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23FFD700' fill-opacity='0.2'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`
           }}
         />
+      </div>
+
+      {/* Rajasthani Character - Left Side Welcome */}
+      <div 
+        ref={characterRef}
+        className="fixed left-80 top-1/2 transform -translate-y-1/2 z-20 hidden lg:block"
+      >
+        <div className="relative">
+          {/* Character Image */}
+          <div className="w-48 h-64 relative">
+            <img 
+              src={rajasthaniCharacterImg}
+              alt="Rajasthani Character Welcome"
+              className="w-full h-full object-contain drop-shadow-2xl"
+              style={{
+                filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.4))'
+              }}
+              onLoad={() => console.log('Character image loaded successfully')}
+              onError={(e) => {
+                console.error('Character image failed to load:', e);
+              }}
+            />
+          </div>
+          
+          {/* Welcoming Aura Effect */}
+          <div className="absolute inset-0 rounded-full opacity-30">
+            <div className="absolute inset-0 rounded-full border-2 border-amber-300 animate-pulse scale-110"></div>
+            <div className="absolute inset-0 rounded-full border border-yellow-400 animate-pulse scale-125 animation-delay-200"></div>
+            <div className="absolute inset-0 rounded-full border border-orange-400 animate-pulse scale-140 animation-delay-400"></div>
+          </div>
+          
+        </div>
+      </div>
+
+      {/* Rajasthani Female Character - Right Side Welcome */}
+      <div 
+        ref={femaleCharacterRef}
+        className="fixed right-80 top-1/2 transform -translate-y-1/2 z-20 hidden lg:block"
+      >
+        <div className="relative">
+          {/* Female Character Image */}
+          <div className="w-48 h-64 relative">
+            <img 
+              src={rajasthaniFemaleCharacterImg}
+              alt="Rajasthani Female Character Welcome"
+              className="w-full h-full object-contain drop-shadow-2xl"
+              style={{
+                filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.4))'
+              }}
+              onLoad={() => console.log('Female character image loaded successfully')}
+              onError={(e) => {
+                console.error('Female character image failed to load:', e);
+              }}
+            />
+          </div>
+          
+          {/* Welcoming Aura Effect - Different colors for female */}
+          <div className="absolute inset-0 rounded-full opacity-30">
+            <div className="absolute inset-0 rounded-full border-2 border-pink-300 animate-pulse scale-110"></div>
+            <div className="absolute inset-0 rounded-full border border-rose-400 animate-pulse scale-125 animation-delay-200"></div>
+            <div className="absolute inset-0 rounded-full border border-red-400 animate-pulse scale-140 animation-delay-400"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Character - Top Center (for smaller screens) */}
+      <div className="fixed top-16 left-1/2 transform -translate-x-1/2 z-20 lg:hidden">
+        <div className="relative">
+          <div className="w-24 h-32 relative">
+            <img 
+              src="/images/rajasthani-character-welcome.png"
+              alt="Rajasthani Character Welcome"
+              className="w-full h-full object-contain drop-shadow-lg"
+              style={{
+                filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
+              }}
+            />
+          </div>
+          <div className="absolute inset-0 rounded-full border border-amber-300 opacity-20 animate-pulse scale-110"></div>
+        </div>
       </div>
 
       {/* Main Content - Split Layout */}
