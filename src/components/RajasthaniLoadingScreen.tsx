@@ -198,14 +198,14 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
         />
       </div>
 
-      {/* Rajasthani Character - Left Side Welcome */}
+      {/* Rajasthani Character - Left Side Welcome (Desktop/Tablet) */}
       <div 
         ref={characterRef}
-        className="fixed left-80 top-1/2 transform -translate-y-1/2 z-20 hidden lg:block"
+        className="fixed left-4 xl:left-8 top-1/2 transform -translate-y-1/2 z-20 hidden md:block"
       >
         <div className="relative">
           {/* Character Image */}
-          <div className="w-48 h-64 relative">
+          <div className="w-32 h-40 md:w-40 md:h-52 xl:w-48 xl:h-64 relative">
             <img 
               src={rajasthaniCharacterImg}
               alt="Rajasthani Character Welcome"
@@ -226,18 +226,17 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
             <div className="absolute inset-0 rounded-full border border-yellow-400 animate-pulse scale-125 animation-delay-200"></div>
             <div className="absolute inset-0 rounded-full border border-orange-400 animate-pulse scale-140 animation-delay-400"></div>
           </div>
-          
         </div>
       </div>
 
-      {/* Rajasthani Female Character - Right Side Welcome */}
+      {/* Rajasthani Female Character - Right Side Welcome (Desktop/Tablet) */}
       <div 
         ref={femaleCharacterRef}
-        className="fixed right-80 top-1/2 transform -translate-y-1/2 z-20 hidden lg:block"
+        className="fixed right-4 xl:right-8 top-1/2 transform -translate-y-1/2 z-20 hidden md:block"
       >
         <div className="relative">
           {/* Female Character Image */}
-          <div className="w-48 h-64 relative">
+          <div className="w-32 h-40 md:w-40 md:h-52 xl:w-48 xl:h-64 relative">
             <img 
               src={rajasthaniFemaleCharacterImg}
               alt="Rajasthani Female Character Welcome"
@@ -261,20 +260,38 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
         </div>
       </div>
 
-      {/* Mobile Character - Top Center (for smaller screens) */}
-      <div className="fixed top-16 left-1/2 transform -translate-x-1/2 z-20 lg:hidden">
-        <div className="relative">
-          <div className="w-24 h-32 relative">
-            <img 
-              src="/images/rajasthani-character-welcome.png"
-              alt="Rajasthani Character Welcome"
-              className="w-full h-full object-contain drop-shadow-lg"
-              style={{
-                filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
-              }}
-            />
+      {/* Mobile Characters - Side by Side (for smaller screens) */}
+      <div className="fixed top-8 left-0 right-0 z-20 md:hidden">
+        <div className="flex justify-between items-start px-4">
+          {/* Male Character - Left */}
+          <div className="relative">
+            <div className="w-16 h-20 sm:w-20 sm:h-24 relative">
+              <img 
+                src={rajasthaniCharacterImg}
+                alt="Rajasthani Character Welcome"
+                className="w-full h-full object-contain drop-shadow-lg"
+                style={{
+                  filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
+                }}
+              />
+            </div>
+            <div className="absolute inset-0 rounded-full border border-amber-300 opacity-20 animate-pulse scale-110"></div>
           </div>
-          <div className="absolute inset-0 rounded-full border border-amber-300 opacity-20 animate-pulse scale-110"></div>
+          
+          {/* Female Character - Right */}
+          <div className="relative">
+            <div className="w-16 h-20 sm:w-20 sm:h-24 relative">
+              <img 
+                src={rajasthaniFemaleCharacterImg}
+                alt="Rajasthani Female Character Welcome"
+                className="w-full h-full object-contain drop-shadow-lg"
+                style={{
+                  filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
+                }}
+              />
+            </div>
+            <div className="absolute inset-0 rounded-full border border-pink-300 opacity-20 animate-pulse scale-110"></div>
+          </div>
         </div>
       </div>
 
