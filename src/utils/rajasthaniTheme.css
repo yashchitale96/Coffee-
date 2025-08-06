@@ -1,0 +1,240 @@
+/* Rajasthani Theme CSS Utilities */
+
+/* Ornate section dividers */
+.rajasthani-divider {
+  position: relative;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #DAA520, transparent);
+  margin: 2rem auto;
+}
+
+.rajasthani-divider::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD700, #B8860B);
+  box-shadow: 0 0 8px #FFD700;
+}
+
+/* Ornate borders */
+.rajasthani-border {
+  border: 1px solid #CD853F;
+  box-shadow: 0 0 0 1px #8B4513;
+  position: relative;
+}
+
+/* Decorative Rajasthani elements */
+.rajasthani-star {
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+  );
+  background: linear-gradient(45deg, #FFD700, #DAA520);
+}
+
+.rajasthani-floral {
+  position: relative;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #DAA520, #B8860B);
+}
+
+.rajasthani-floral::before,
+.rajasthani-floral::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.rajasthani-floral::before {
+  top: -30%;
+  left: -30%;
+  width: 60%;
+  height: 60%;
+}
+
+.rajasthani-floral::after {
+  top: -30%;
+  right: -30%;
+  width: 60%;
+  height: 60%;
+}
+
+/* Border patterns */
+.rajasthani-border-top {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='8' viewBox='0 0 100 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v2H0V0zm0 4h100v2H0V4z' fill='%23FFD700' fill-opacity='0.4'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+}
+
+.rajasthani-border-bottom {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='8' viewBox='0 0 100 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v2H0V0zm0 4h100v2H0V4z' fill='%23FFD700' fill-opacity='0.4'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+}
+
+.rajasthani-border::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* Decorative corners for cards and sections */
+.rajasthani-corners {
+  position: relative;
+}
+
+.rajasthani-corners::before,
+.rajasthani-corners::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: #DAA520;
+  border-style: solid;
+  z-index: 1;
+}
+
+.rajasthani-corners::before {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+}
+
+.rajasthani-corners::after {
+  top: 0;
+  right: 0;
+  border-width: 2px 2px 0 0;
+}
+
+.rajasthani-corners > span::before,
+.rajasthani-corners > span::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: #DAA520;
+  border-style: solid;
+  z-index: 1;
+}
+
+.rajasthani-corners > span::before {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 2px 2px;
+}
+
+.rajasthani-corners > span::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 2px 2px 0;
+}
+
+/* Rajasthani typography styles */
+.rajasthani-heading {
+  font-family: Georgia, serif;
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(45deg, #FFD700, #FFA500);
+  position: relative;
+  display: inline-block;
+}
+
+/* Elegant button with hover effect */
+.rajasthani-button {
+  background: linear-gradient(135deg, #8B4513, #CD853F);
+  border: 1px solid #DAA520;
+  color: #FFD700;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.25rem;
+  font-family: Georgia, serif;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.rajasthani-button:hover {
+  box-shadow: 0 0 12px rgba(218, 165, 32, 0.4);
+}
+
+.rajasthani-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, transparent 50%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.rajasthani-button:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Input fields with Rajasthani styling */
+.rajasthani-input {
+  background-color: rgba(139, 69, 19, 0.05);
+  border: 1px solid #CD853F;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1rem;
+  color: #4A2C2A;
+  transition: all 0.3s ease;
+}
+
+.rajasthani-input:focus {
+  outline: none;
+  border-color: #DAA520;
+  box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.2);
+  background-color: rgba(255, 215, 0, 0.05);
+}
+
+/* Card styling with Rajasthani theme */
+.rajasthani-card {
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.95), rgba(255,255,255,0.8));
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(139, 69, 19, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rajasthani-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #8B4513, #DAA520, #8B4513);
+}
+
+.rajasthani-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
+}
+
+/* Blockquote for testimonials */
+.rajasthani-quote {
+  position: relative;
+  font-style: italic;
+  padding-left: 2.5rem;
+}
+
+.rajasthani-quote::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: -0.5rem;
+  font-size: 4rem;
+  line-height: 1;
+  font-family: Georgia, serif;
+  color: rgba(218, 165, 32, 0.4);
+}

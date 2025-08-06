@@ -263,6 +263,152 @@ export class GSAPAnimations {
       ScrollTrigger.config({ autoRefreshEvents: "none" });
     }
   }
+  
+  // Rajasthani-themed animations
+  
+  // Decorative border animation
+  static rajasthaniBorderReveal(element: string | Element, options: any = {}) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: element,
+        start: "top 85%",
+        toggleActions: "play none none none",
+        ...(options.scrollTrigger || {})
+      }
+    });
+    
+    tl.fromTo(element, 
+      { 
+        backgroundSize: "0% 100%",
+        opacity: 0.3
+      }, 
+      { 
+        backgroundSize: "100% 100%",
+        opacity: 1, 
+        duration: 1.5, 
+        ease: "power2.out" 
+      }
+    );
+    
+    return tl;
+  }
+  
+  // Traditional pattern reveal animation
+  static rajasthaniPatternReveal(element: string | Element, options: any = {}) {
+    return gsap.fromTo(element,
+      { 
+        opacity: 0,
+        backgroundPosition: "0% 0%",
+        scale: 0.9,
+        ...options.from
+      },
+      {
+        opacity: 1,
+        backgroundPosition: "50% 50%",
+        scale: 1,
+        duration: 1.8,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: element,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none none",
+          ...(options.scrollTrigger || {})
+        },
+        ...options
+      }
+    );
+  }
+  
+  // Ornate text animation with gold shimmer effect
+  static rajasthaniTextShimmer(element: string | Element) {
+    const tl = gsap.timeline({repeat: -1, repeatDelay: 3});
+    
+    tl.to(element, {
+      backgroundImage: "linear-gradient(90deg, #8B4513 0%, #DAA520 50%, #FFD700 100%)",
+      backgroundSize: "200% 100%",
+      duration: 0,
+      ease: "none"
+    })
+    .to(element, {
+      backgroundPosition: "-100% 0%",
+      duration: 1.5,
+      ease: "power2.inOut"
+    });
+    
+    return tl;
+  }
+  
+  // Rajasthani themed reveal for story sections
+  static rajasthaniStoryReveal(container: string | Element, options: any = {}) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 70%",
+        toggleActions: "play none none none",
+        ...(options.scrollTrigger || {})
+      }
+    });
+    
+    // Assume container has children with classes: .story-image, .story-content, .decorative-element
+    const image = typeof container === 'string' 
+      ? document.querySelector(`${container} .story-image`) 
+      : (container as Element).querySelector('.story-image');
+    
+    const content = typeof container === 'string' 
+      ? document.querySelector(`${container} .story-content`) 
+      : (container as Element).querySelector('.story-content');
+    
+    const decorative = typeof container === 'string' 
+      ? document.querySelectorAll(`${container} .decorative-element`) 
+      : (container as Element).querySelectorAll('.decorative-element');
+    
+    if (image) {
+      tl.fromTo(image, 
+        { clipPath: "inset(100% 0 0 0)", opacity: 0 }, 
+        { clipPath: "inset(0% 0 0 0)", opacity: 1, duration: 1.5, ease: "power4.out" },
+        0
+      );
+    }
+    
+    if (content) {
+      tl.fromTo(content, 
+        { opacity: 0, y: 50 }, 
+        { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+        0.5
+      );
+    }
+    
+    if (decorative.length) {
+      tl.fromTo(decorative, 
+        { opacity: 0, scale: 0 }, 
+        { opacity: 1, scale: 1, duration: 0.8, stagger: 0.1, ease: "back.out(1.7)" },
+        0.7
+      );
+    }
+    
+    return tl;
+  }
+  
+  // Traditional Rajasthani dance-inspired movement
+  static rajasthaniOrnamentFloat(element: string | Element) {
+    const tl = gsap.timeline({repeat: -1, yoyo: true});
+    
+    tl.to(element, {
+      y: -10,
+      rotation: 5,
+      duration: 2.5,
+      ease: "sine.inOut"
+    })
+    .to(element, {
+      y: 0,
+      rotation: -3,
+      duration: 2.5,
+      ease: "sine.inOut"
+    });
+    
+    return tl;
+  }
 }
 
 // Initialize GSAP when the module loads

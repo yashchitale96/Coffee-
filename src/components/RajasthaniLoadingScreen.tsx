@@ -33,15 +33,15 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
           // Theatrical curtain drop animation
           gsap.to(curtainRef.current, {
             scaleY: 1, // Scale up to cover screen
-            duration: 1.8, // Longer for dramatic effect
+            duration: 1.2, // Shorter for less delay
             ease: "power3.inOut", // More dramatic easing
             transformOrigin: "top",
             onComplete: () => {
-              // Add a brief final pause before completing
-              setTimeout(onComplete, 300);
+              // Complete immediately without additional delay
+              onComplete();
             }
           });
-        }, 800); // 0.8 second pause before exit
+        }, 300); // Reduced pause before exit
       }
     });
 
@@ -348,10 +348,10 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
           </div>
         </div>
 
-        {/* Clean Typography */}
+        {/* Elegant Typography */}
         <div ref={textRef} className="mb-10">
           <div className="mb-2 text-amber-200 text-sm font-light">
-            🙏 नमस्ते • Welcome 🙏
+            🙏 नमस्ते • Welcome to Our Coffee House 🙏
           </div>
           <h1 
             className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text mb-2"
@@ -363,18 +363,18 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
             कॉफी हाउस
           </h1>
           <h2 className="text-lg text-amber-100 font-light tracking-wide">
-            Royal Coffee Experience
+            Authentic Rajasthani Royal Coffee Experience
           </h2>
           <div className="w-16 h-0.5 bg-amber-300 mx-auto mt-2 opacity-60"></div>
           <p className="text-xs text-amber-300 mt-2 opacity-80">
-            आपका स्वागत है • You are welcome
+            Where Tradition Meets Excellence
           </p>
         </div>
 
-        {/* Elegant Progress Bar */}
+        {/* Enhanced Progress Bar */}
         <div ref={progressRef} className="w-full">
           <div className="text-amber-200 text-sm mb-3 font-light">
-            तैयार हो रहा है... {Math.round(progress)}%
+            Brewing your experience... {Math.round(progress)}%
           </div>
           <div className="w-full h-1 bg-amber-900/30 rounded-full overflow-hidden backdrop-blur-sm">
             <div 
@@ -384,8 +384,8 @@ const RajasthaniLoadingScreen: React.FC<RajasthaniLoadingScreenProps> = ({ onCom
             />
           </div>
           <div className="flex justify-between text-xs text-amber-300/60 mt-2">
-            <span>राजस्थानी</span>
-            <span>परंपरा</span>
+            <span>Heritage</span>
+            <span>Elegance</span>
           </div>
         </div>
         
